@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskFlow JS – Callbacks</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #0f172a;
+      color: #e2e8f0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+    }
+    main {
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      padding: 24px 28px;
+      max-width: 520px;
+      width: 90%;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    }
+    h1 {
+      margin: 0 0 12px;
+      font-size: 1.4rem;
+      letter-spacing: 0.5px;
+    }
+    p {
+      margin: 0 0 12px;
+      line-height: 1.5;
+      color: #cbd5e1;
+    }
+    button {
+      background: linear-gradient(135deg, #22d3ee, #0ea5e9);
+      border: none;
+      color: #0b1324;
+      font-weight: 700;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+      width: 100%;
+    }
+    button:hover { transform: translateY(-1px); }
+    button:active { transform: translateY(0); }
+    .tip {
+      display: inline-block;
+      background: #1e293b;
+      padding: 6px 8px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>TaskFlow JS</h1>
+    <p>Programa de demonstração com função anônima, arrow function e callbacks para gerenciar tarefas em memória.</p>
+    <p class="tip">Abra o console (F12) para acompanhar as operações.</p>
+    <button id="start-taskflow" type="button">Iniciar fluxo de prompts</button>
+  </main>
+  <script type="module" src="./src/taskflow.js"></script>
+</body>
+</html>
