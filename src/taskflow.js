@@ -1,4 +1,37 @@
 const tasks = [];
+const STORAGE_KEY = "taskflow-js/tasks";
+
+const canUseStorage = () => typeof localStorage !== "undefined";
+
+const loadTasksFromStorage = () => {
+  if (!canUseStorage()) return [];
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (error) {
+    console.log("Não foi possível carregar tarefas salvas.");
+    return [];
+  }
+};
+
+const persistTasks = () => {
+  if (!canUseStorage()) return;
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  } catch (error) {
+    console.log("Não foi possível salvar tarefas.");
+  }
+};
+
+const hydrateTasks = () => {
+  const saved = loadTasksFromStorage();
+  if (saved.length) {
+    tasks.splice(0, tasks.length, ...saved);
+    console.log("Tarefas carregadas do storage.");
+  }
+};
 
 const addTask = function (description) {
   const title = (description || "").trim();
@@ -8,6 +41,7 @@ const addTask = function (description) {
   }
   tasks.push({ title, done: false });
   console.log(`Tarefa adicionada: ${title}`);
+  persistTasks();
 };
 
 const listTasks = () => {
@@ -53,6 +87,7 @@ const removeTask = (list) => {
   if (index === null) return;
   const [removed] = list.splice(index, 1);
   console.log(`Tarefa removida: ${removed.title}`);
+  persistTasks();
 };
 
 const updateTask = (list) => {
@@ -71,6 +106,7 @@ const updateTask = (list) => {
   list[index].title = normalized;
   list[index].done = false;
   console.log(`Tarefa atualizada: ${normalized}`);
+  persistTasks();
 };
 
 const completeTask = (list) => {
@@ -78,6 +114,7 @@ const completeTask = (list) => {
   if (index === null) return;
   list[index].done = true;
   console.log(`Tarefa concluída: ${list[index].title}`);
+  persistTasks();
 };
 
 const askAction = () =>
@@ -138,9 +175,25 @@ const runTaskFlow = () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  const startButton = document.getElementById("start-taskflow");
-  if (startButton) {
-    startButton.addEventListener("click", () => runTaskFlow());
-  }
-});
+hydrateTasks();
+
+if (typeof document !== "undefined") {
+  document.addEventListener("DOMContentLoaded", () => {
+    const startButton = document.getElementById("start-taskflow");
+    if (startButton) {
+      startButton.addEventListener("click", () => runTaskFlow());
+    }
+  });
+}
+
+export {
+  tasks,
+  addTask,
+  listTasks,
+  withTasks,
+  removeTask,
+  updateTask,
+  completeTask,
+  runTaskFlow,
+  loadTasksFromStorage,
+};

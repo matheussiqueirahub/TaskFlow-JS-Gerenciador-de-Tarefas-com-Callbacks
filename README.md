@@ -26,3 +26,16 @@ taskflow-js/
 - Reúso de lógica por callbacks para aplicar múltiplas operações sem duplicar código.
 - Separação clara entre coleta de entrada (`prompt`) e efeitos (console + array).
 - Código curto, comentado apenas onde a leitura não é óbvia.
+
+## Persistência
+- As tarefas ficam salvas em `localStorage` (se disponível). Ao reabrir a página, o estado é reidratado automaticamente.
+
+## Testes rápidos (mocks de prompt)
+1) Instale o Node (>=18).  
+2) Rode `npm test` para executar `tests/taskflow.test.js`, que simula entradas de `prompt` e valida callbacks de remover, atualizar e concluir.
+
+## Deploy via GitHub Pages
+1) Vá em **Settings > Pages** no repositório.  
+2) Em **Build and deployment**, selecione **Deploy from a branch**.  
+3) Escolha branch `main` e pasta `/ (root)`. Salve.  
+4) A URL ficará disponível em alguns minutos (use o link fornecido pelo GitHub).
