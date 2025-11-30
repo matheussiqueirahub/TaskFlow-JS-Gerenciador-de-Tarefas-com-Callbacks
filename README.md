@@ -1,7 +1,7 @@
 # TaskFlow JS – Gerenciador de Tarefas com Callbacks
 
 
-- **Descrição (≈350 caracteres):** Aplicação em JavaScript para gestão de tarefas no navegador, usando função anônima para cadastro dinâmico, arrow functions para listagem detalhada e callbacks para remover, atualizar e concluir itens. Interação via prompt() e feedback no console.log(), priorizando código limpo, reuso de lógica e fácil manutenção. Documentação enxuta para portfólio.
+- **Descrição:** Aplicação em JavaScript para gestão de tarefas no navegador, usando função anônima para cadastro dinâmico, arrow functions para listagem detalhada e callbacks para remover, atualizar e concluir itens. Interação via prompt() e feedback no console.log(), priorizando código limpo, reuso de lógica e fácil manutenção. Documentação enxuta para portfólio.
 
 ## O que o projeto mostra
 - Função anônima para adicionar tarefas em memória.
